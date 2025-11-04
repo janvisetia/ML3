@@ -10,6 +10,15 @@ with open("tokenizer.pkl", "rb") as f:
 vocab_size = len(tokenizer.word_index) + 1
 
 # Load Pretrained Models
+import os, gdown
+
+def download_if_missing(filename, file_id):
+    if not os.path.exists(filename):
+        url = f"https://drive.google.com/uc?id={file_id}"
+        gdown.download(url, filename, quiet=False)
+download_if_missing("next_word_model.h5", "18meW7duB04_oflkGuNHGPEq38GmoUKVC")
+download_if_missing("model_context7_tanh.h5", "1NBeKYN1bdHlsnRF1cl4O9sYDY8bGnC78")
+download_if_missing("model_context10_relu.h5", "1aCzLJcCghtzxNxoSMWHHUBpP1PERH-JE")
 
 models = {
     "Model 1: Context=5 | Embed=64 | Activation=ReLU | Patience=3": {
